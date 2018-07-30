@@ -1,0 +1,5 @@
+email_auth.json
+movies.json
+/.idea
+node_modules
+**/templates/*.html

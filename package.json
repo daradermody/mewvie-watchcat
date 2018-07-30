@@ -1,0 +1,18 @@
+{
+  "name": "mewvie-watchcat",
+  "version": "0.1.0",
+  "description": "Stay up to date with movies out in your local cinemas",
+  "main": "src/index.js",
+  "keywords": [
+    "movies",
+    "watch"
+  ],
+  "author": "Dara Dermody",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.10",
+    "nodemailer": "^4.6.7",
+    "pug": "^2.0.3"
+  }
+}

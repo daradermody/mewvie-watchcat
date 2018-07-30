@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    style(type='text/css').
+      li {
+        margin-bottom: 10px;
+      }
+
+      b {
+        display: block;
+      }
+
+      small {
+        font-style: italic;
+      }
+
+  body
+    ul
+      each cinemas, movie in movies
+        li
+          b= movie
+          small= cinemas.join(', ')
