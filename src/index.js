@@ -48,16 +48,20 @@ function checkForNewMovies(moviesAndCinemas) {
 
   if (newMovies.length) {
     Emailer.sendMail('daradermody@gmail.com', 'New movies are out!', 'new-movies.pug', { movies: _.pick(moviesAndCinemas, newMovies) })
-        .catch(console.error);
+      .catch(console.error);
   }
 
   return currentMovies;
 }
 
 
+if (!fs.existsSync(MOVIE_FILE)) {
+  fs.writeFileSync(MOVIE_FILE, '[]');
+}
+
 axios.get('http://entertainment.ie/ssi/lib/cinema-search.js')
-    .then(extractData)
-    .then(getMoviesAndCinemas)
-    .then(checkForNewMovies)
-    .then(movies => fs.writeFileSync(MOVIE_FILE, JSON.stringify(movies, null, 2)))
-    .catch(console.error);
+  .then(extractData)
+  .then(getMoviesAndCinemas)
+  .then(checkForNewMovies)
+  .then(movies => fs.writeFileSync(MOVIE_FILE, JSON.stringify(movies, null, 2)))
+  .catch(console.error);
