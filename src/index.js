@@ -47,7 +47,12 @@ function checkForNewMovies(moviesAndCinemas) {
   const newMovies = currentMovies.filter(movie => !savedMovies.includes(movie));
 
   if (newMovies.length) {
-    Emailer.sendMail('daradermody@gmail.com', 'New movies are out!', 'new-movies.pug', { movies: _.pick(moviesAndCinemas, newMovies) })
+    Emailer.sendMail(
+      'daradermody@gmail.com',
+      'New movies are out!',
+      'new-movies.pug',
+      { movies: _.pick(moviesAndCinemas, newMovies) }
+    )
       .catch(console.error);
   }
 
@@ -64,4 +69,9 @@ axios.get('http://entertainment.ie/ssi/lib/cinema-search.js')
   .then(getMoviesAndCinemas)
   .then(checkForNewMovies)
   .then(movies => fs.writeFileSync(MOVIE_FILE, JSON.stringify(movies, null, 2)))
-  .catch(console.error);
+  .catch(err => Emailer.sendMail(
+    'daradermody@gmail.com',
+    'Error checking for new movies',
+    'error.pug',
+    { error: err.message }
+  ));
