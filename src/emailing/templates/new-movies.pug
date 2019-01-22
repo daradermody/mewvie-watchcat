@@ -2,21 +2,23 @@ doctype html
 html(lang="en")
   head
     style(type='text/css').
-      li {
-        margin-bottom: 10px;
+      a {
+        text-decoration: none;
       }
-
       b {
-        display: block;
+        font-size: 1.1em;
       }
-
-      small {
-        font-style: italic;
-      }
-
-  body
+body
     ul
       each cinemas, movie in movies
         li
-          b= movie
-          small= cinemas.join(', ')
+          b #{movie}&nbsp;
+          small
+            span (
+            each cinema, index in cinemas
+              if cinema.link
+                a(href=cinema.link)= cinema.name
+              else
+                span= cinema.name
+              span= index !== cinemas.length - 1 ? ', ' : ''
+            span )

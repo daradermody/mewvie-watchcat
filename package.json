@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "jsdom": "^13.1.0",
     "lodash": "^4.17.10",
     "nodemailer": "^4.6.7",
     "pug": "^2.0.3"
